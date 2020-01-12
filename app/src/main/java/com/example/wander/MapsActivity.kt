@@ -61,6 +61,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
 
@@ -73,5 +74,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(homeLatLng, zoomLevel))
         map.addMarker(MarkerOptions().position(homeLatLng))
 
+        setMapLongClick(map)
+    }
+
+    private fun setMapLongClick(map:GoogleMap){
+        map.setOnMapLongClickListener { latLng ->
+            map.addMarker(
+                MarkerOptions().position(latLng)
+            )
+        }
     }
 }
